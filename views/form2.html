@@ -3,30 +3,14 @@
 <h1>Food Order - Continued</h1>
 <form method="post" action="summary">
     <label>Condiments:</label>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="conds[]" value="">
-        <label class="form-check-label">
-            Ketchup
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="conds[]" value="">
-        <label class="form-check-label">
-            Franks Red Hot
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="conds[]" value="">
-        <label class="form-check-label" >
-            Ranch
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="conds[]" value="">
-        <label class="form-check-label">
-            Salt / Pepper Packets
-        </label>
-    </div>
+        <repeat group="{{@condiments}}" value="{{@condiment}}">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="{{@condiment}}" value="{{@condiment}}">
+                <label class="form-check-label">
+                    {{ucfirst(@condiment)}}
+                </label>
+            </div>
+        </repeat>
     <input type="submit" value="Place Order!">
 </form>
 </body>
