@@ -1,9 +1,12 @@
 <include href="views/header.html"></include>
 <body>
     <h1>Food Order</h1>
-    <form class="form-check" action="order2" method="post">
+    <form class="form-check" action="#" method="post">
         <label>What would you like to order?
             <input type="text" name="food">
+            <check if="{{ isset(@errors['food'])}}">
+                {{@errors['food']}}
+            </check>
         </label> <br>
             <repeat group="{{@meals}}" value="{{@meal}}">
                 <div class="form-check">
