@@ -3,8 +3,10 @@
  * Contains validation for food application
  */
 
-/** validFood() returns true if is not empty */
+/** validFood() returns true if is not empty and contains only letters */
 function validFood($food){
     // $validFoods = array("a", "b", "c");
-    return !empty(trim($food));
+
+
+    return !empty($food) && ctype_alpha($food);
 }

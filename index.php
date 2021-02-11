@@ -28,10 +28,16 @@ $f3->route('GET|POST /order' , function($f3){
 
     // if the form has been submitted - validation
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        if(validFood($_POST['food'])){
-            $_SESSION['food'] = $_POST['food'];
-        } else {
-            $f3->set('errors["food"]', "Food cannot be blank");
+
+        // get the data from the post array
+        $userFood = trim($_POST['food']);
+        $userMeal = trim($_POST['meal']);
+
+        // if the data is valid - store in the session
+        if(validFood($userFood)){
+            $_SESSION['food'] = $userFood;
+        } else { // if the data is not valid -> set an error in F3 hive
+            $f3->set('errors["food"]', "Food cannot be blank and must not contain numbers");
         }
 
         if(isset($_POST['meal'])){
@@ -45,6 +51,7 @@ $f3->route('GET|POST /order' , function($f3){
     }
 
     $f3->set('meals', getMeals());
+    $f3->set('userFood', isset($userFood) ? ($userFood) : "");
 
     $view = new Template();
     echo $view->render('/views/form1.html');
