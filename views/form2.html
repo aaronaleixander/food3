@@ -1,17 +1,31 @@
 <include href="views/header.html"></include>
 <body>
-<h1>Food Order - Continued</h1>
-<form method="post" action="summary">
-    <label>Condiments:</label>
-        <repeat group="{{@condiments}}" value="{{@condiment}}">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="{{@condiment}}" value="{{@condiment}}">
-                <label class="form-check-label">
-                    {{ucfirst(@condiment)}}
-                </label>
+<div class="container">
+    <h1>Food Order, Continued</h1>
+
+    <form action="#" method="post" class="form-horizontal">
+
+        <!-- get condiments -->
+        <check if="{{ @errors['conds'] }}"><span>{{ @errors['conds'] }}</span></check>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Select condiments</label>
+            <div class="col-sm-4">
+                <div class="col-sm-4">
+                    <repeat group="{{ @condiments }}" value="{{ @condiment }}">
+                        <label><input type="checkbox"
+                                      name="conds[]"
+                                      value="{{ @condiment }}"> {{ ucfirst(@condiment) }}</label><br>
+                    </repeat>
+                </div>
             </div>
-        </repeat>
-    <input type="submit" value="Place Order!">
+        </div>
+</div>
+
+<div class="col-xs-3 ">
+    <input class="form-control btn btn-default"
+           type="submit" value="Place Order">
+</div>
 </form>
+</div>
 </body>
 </html>

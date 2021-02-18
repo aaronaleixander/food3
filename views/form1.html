@@ -1,23 +1,39 @@
 <include href="views/header.html"></include>
 <body>
+<div class="container">
     <h1>Food Order</h1>
-    <form class="form-check" action="#" method="post">
-        <label>What would you like to order?
-            <input type="text" name="food" value="{{ @userFood }}">
-            <check if="{{ isset(@errors['food'])}}">
-                {{@errors['food']}}
-            </check>
-        </label> <br>
-            <repeat group="{{@meals}}" value="{{@meal}}">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="{{@meal}}" id="{{@meal}}" value="{{@meal}}">
-                    <label class="form-check-label">
+    <form method="post" action="#">
+
+        <div class="form-group">
+            <label>What would you like to order?
+                <input type="text" name ="food" value="{{ @userFood }}">
+                <check if="{{ isset(@errors['food']) }}">
+                    {{ @errors['food'] }}
+                </check>
+            </label>
+        </div>
+
+        <!-- get meal -->
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Select a meal</label>
+            <div class="col-sm-4">
+                <repeat group="{{ @meals }}" value="{{ @meal }}">
+                    <label><input type="radio"
+                                  name="meal"
+                                  id="{{ @meal }}"
+                                  value="{{ @meal }}"
+                        <check if="{{ @meal == @userMeal }}">checked</check>>
                         {{ ucfirst(@meal) }}
-                    </label>
-                </div> <!-- ALL DATA COMING FROM DATA LAYER -->
-            </repeat>
+                        </input></label><br>
+                </repeat>
+                <check if="{{ isset(@errors['meal']) }}">
+                    {{ @errors['meal'] }}
+                </check>
+            </div>
+        </div>
+
         <input type="submit" value="Next >>">
     </form>
-
+</div>
 </body>
 </html>
